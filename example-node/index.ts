@@ -1,19 +1,19 @@
 import TransportNodeHid from "@ledgerhq/hw-transport-node-hid";
 
-import { Certificate, StakeCredentialParamsType, TxInput, TxOutput, Withdrawal } from "../src/Ada";
-import { Ada, AddressType, CertificateType, HARDENED, Networks, TransactionSigningMode, TxOutputDestinationType } from "../src/Ada";
+import { Certificate, StakeCredentialParamsType, TxInput, TxOutput, Withdrawal } from "../src/Bcc";
+import { Bcc, AddressType, CertificateType, HARDENED, Networks, TransactionSigningMode, TxOutputDestinationType } from "../src/Bcc";
 import { base58_encode, bech32_encodeAddress, str_to_path } from "../src/utils/address";
 
-const getVersion = async (appAda: Ada) => {
+const getVersion = async (appBcc: Bcc) => {
   console.log("getVersion");
-  console.log(await appAda.getVersion());
+  console.log(await appBcc.getVersion());
   console.log("-".repeat(40));
 }
 
-const getExtendedPublicKey = async (appAda: Ada) => {
+const getExtendedPublicKey = async (appBcc: Bcc) => {
   console.log("getExtendedPublicKey");
   console.log(
-    await appAda.getExtendedPublicKey({
+    await appBcc.getExtendedPublicKey({
       path: [
         HARDENED + 44,
         HARDENED + 1815,
@@ -30,11 +30,11 @@ const getExtendedPublicKey = async (appAda: Ada) => {
   console.log("-".repeat(40));
 }
 
-const deriveAddress = async (appAda: Ada) => {
+const deriveAddress = async (appBcc: Bcc) => {
   console.log("deriveAddress");
 
   console.log("Legacy address");
-  const responseLegacy = await appAda.deriveAddress({
+  const responseLegacy = await appBcc.deriveAddress({
     network: Networks.Mainnet,
     address: {
       type: AddressType.COLE,
@@ -56,7 +56,7 @@ const deriveAddress = async (appAda: Ada) => {
   console.log("-".repeat(40));
 
   console.log("Base address");
-  const responseBase = await appAda.deriveAddress({
+  const responseBase = await appBcc.deriveAddress({
     network: Networks.Testnet,
     address: {
       type: AddressType.BASE_PAYMENT_KEY_STAKE_KEY,
@@ -80,10 +80,10 @@ const deriveAddress = async (appAda: Ada) => {
   console.log("-".repeat(40));
 }
 
-const showAddress = async (appAda: Ada) => {
+const showAddress = async (appBcc: Bcc) => {
   console.log("showAddress");
   console.log("Legacy address");
-  const responseLegacy = await appAda.showAddress({
+  const responseLegacy = await appBcc.showAddress({
     network: Networks.Mainnet,
     address: {
       type: AddressType.COLE,
@@ -99,7 +99,7 @@ const showAddress = async (appAda: Ada) => {
   console.log("-".repeat(40));
 
   console.log("Base address");
-  const responseBase = await appAda.showAddress({
+  const responseBase = await appBcc.showAddress({
     network: Networks.Testnet,
     address: {
       type: AddressType.BASE_PAYMENT_KEY_STAKE_KEY,
@@ -116,7 +116,7 @@ const showAddress = async (appAda: Ada) => {
   console.log("-".repeat(40));
 }
 
-const signTransaction = async (appAda: Ada) => {
+const signTransaction = async (appBcc: Bcc) => {
   console.log("signTransaction");
 
   const network = Networks.Mainnet
@@ -225,7 +225,7 @@ const signTransaction = async (appAda: Ada) => {
   ]
 
   console.log(
-    await appAda.signTransaction({
+    await appBcc.signTransaction({
       signingMode: TransactionSigningMode.ORDINARY_TRANSACTION,
       tx: {
         network,
@@ -263,13 +263,13 @@ async function example() {
   console.log("Running BCC examples");
   const transport = await TransportNodeHid.create(5000);
   // transport.setDebugMode(true);
-  const appAda = new Ada(transport);
+  const appBcc = new Bcc(transport);
 
-  await getVersion(appAda);
-  await getExtendedPublicKey(appAda);
-  await deriveAddress(appAda);
-  await showAddress(appAda);
-  await signTransaction(appAda);
+  await getVersion(appBcc);
+  await getExtendedPublicKey(appBcc);
+  await deriveAddress(appBcc);
+  await showAddress(appBcc);
+  await signTransaction(appBcc);
 
 }
 

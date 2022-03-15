@@ -68,8 +68,8 @@ function wrapConvertDeviceStatusError<T extends Function>(fn: T): T {
  * Bcc BCC API
  *
  * @example
- * import Ada from "@ledgerhq/hw-app-ada";
- * const ada = new Ada(transport);
+ * import Bcc from "@ledgerhq/hw-app-bcc";
+ * const bcc = new Bcc(transport);
  */
 
 /** @ignore */
@@ -124,7 +124,7 @@ async function interact<T>(
  * Main API endpoint
  * @category Main
  */
-export class Ada {
+export class Bcc {
   /** @ignore */
   transport: Transport<string>;
   /** @ignore */
@@ -170,7 +170,7 @@ export class Ada {
    * @returns Result object containing the application version number.
    *
    * @example
-   * const { major, sentry, patch, flags } = await ada.getVersion();
+   * const { major, sentry, patch, flags } = await bcc.getVersion();
    * console.log(`App version ${major}.${sentry}.${patch}`);
    *
    */
@@ -191,7 +191,7 @@ export class Ada {
    * @returns Result object containing the device serial number.
    *
    * @example
-   * const { serial } = await ada.getSerial();
+   * const { serial } = await bcc.getSerial();
    * console.log(`Serial number ${serial}`);
    *
    */
@@ -228,7 +228,7 @@ export class Ada {
    *
    * @example
    * ```
-   * const [{ publicKey, chainCode }] = await ada.getExtendedPublicKeys([[ HARDENED + 44, HARDENED + 1815, HARDENED + 1 ]]);
+   * const [{ publicKey, chainCode }] = await bcc.getExtendedPublicKeys([[ HARDENED + 44, HARDENED + 1815, HARDENED + 1 ]]);
    * console.log(publicKey);
    * ```
    */
@@ -349,7 +349,7 @@ export class Ada {
 }
 
 /**
- * Response to [[Ada.getVersion]] call
+ * Response to [[Bcc.getVersion]] call
  * @category Main
  */
 export type GetVersionResponse = {
@@ -358,7 +358,7 @@ export type GetVersionResponse = {
 }
 
 /**
- * Get multiple public keys ([[Ada.getExtendedPublicKeys]]) request data
+ * Get multiple public keys ([[Bcc.getExtendedPublicKeys]]) request data
  * @category Main
  * @see [[GetExtendedPublicKeysResponse]]
  */
@@ -368,14 +368,14 @@ export type GetExtendedPublicKeysRequest = {
 }
 
 /**
- * [[Ada.getExtendedPublicKeys]] response data
+ * [[Bcc.getExtendedPublicKeys]] response data
  * @category Main
  * @see [[GetExtendedPublicKeysRequest]]
  */
 export type GetExtendedPublicKeysResponse = Array<ExtendedPublicKey>
 
 /**
- * Get single public keys ([[Ada.getExtendedPublicKey]]) request data
+ * Get single public keys ([[Bcc.getExtendedPublicKey]]) request data
  * @category Main
  * @see [[GetExtendedPublicKeysResponse]]
  */
@@ -384,14 +384,14 @@ export type GetExtendedPublicKeyRequest = {
   path: BIP32Path
 }
 /**
- * Get single public key ([[Ada.getExtendedPublicKey]]) response data
+ * Get single public key ([[Bcc.getExtendedPublicKey]]) response data
  * @category Main
  * @see [[GetExtendedPublicKeysResponse]]
  */
 export type GetExtendedPublicKeyResponse = ExtendedPublicKey
 
 /**
- * Derive address ([[Ada.deriveAddress]]) request data
+ * Derive address ([[Bcc.deriveAddress]]) request data
  * @category Main
  * @see [[DeriveAddressResponse]]
  */
@@ -400,46 +400,46 @@ export type DeriveAddressRequest = {
   address: DeviceOwnedAddress
 }
 /**
- * Derive address ([[Ada.deriveAddress]]) response data
+ * Derive address ([[Bcc.deriveAddress]]) response data
  * @category Main
  * @see [[DeriveAddressRequest]]
  */
 export type DeriveAddressResponse = DerivedAddress
 
 /**
- * Show address on derivce ([[Ada.showAddress]]) request data
+ * Show address on derivce ([[Bcc.showAddress]]) request data
  * @category Main
  */
 export type ShowAddressRequest = DeriveAddressRequest
 
 /**
- * Get device serial number ([[Ada.getSerial]]) response data
+ * Get device serial number ([[Bcc.getSerial]]) response data
  * @category Main
  */
 export type GetSerialResponse = Serial
 
 /**
- * Sign transaction ([[Ada.signTransaction]]) response data
+ * Sign transaction ([[Bcc.signTransaction]]) response data
  * @category Main
  * @see [[SignTransactionRequest]]
  */
 export type SignTransactionResponse = SignedTransactionData
 
 /**
- * Sign operational certificate ([[Ada.signOperationalCertificate]]) request data
+ * Sign operational certificate ([[Bcc.signOperationalCertificate]]) request data
  * @category Main
  * @see [[SignOperationalCertificateResponse]]
  */
 export type SignOperationalCertificateRequest = OperationalCertificate
 /**
- * Sign operational certificate ([[Ada.signOperationalCertificate]]) response data
+ * Sign operational certificate ([[Bcc.signOperationalCertificate]]) response data
  * @category Main
  * @see [[SignOperationalCertificateRequest]]
  */
 export type SignOperationalCertificateResponse = OperationalCertificateSignature
 
 /**
- * Derive native script hash ([[Ada.deriveNativeScriptHash]]) request data
+ * Derive native script hash ([[Bcc.deriveNativeScriptHash]]) request data
  * @category Main
  * @see [[DeriveNativeScriptHashResponse]]
  */
@@ -448,7 +448,7 @@ export type DeriveNativeScriptHashRequest = {
   displayFormat: NativeScriptHashDisplayFormat,
 }
 /**
- * Derive native script hash ([[Ada.deriveNativeScriptHash]]) response data
+ * Derive native script hash ([[Bcc.deriveNativeScriptHash]]) response data
  * @category Main
  * @see [[DeriveNativeScriptHashRequest]]
  */
@@ -457,7 +457,7 @@ export type DeriveNativeScriptHashResponse = NativeScriptHash
 // reexport
 export type { Transaction, DeviceOwnedAddress }
 export { AddressType, CertificateType, RelayType, InvalidDataReason, TransactionSigningMode, NativeScriptType, utils }
-export default Ada
+export default Bcc
 
 /**
  * Default Bcc networks

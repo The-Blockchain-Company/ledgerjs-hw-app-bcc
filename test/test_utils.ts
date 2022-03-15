@@ -2,19 +2,19 @@
 import TransportNodeHid from "@ledgerhq/hw-transport-node-hid"
 import { ImportMock } from "ts-mock-imports"
 
-import Ada from "../src/Ada"
+import Bcc from "../src/Bcc"
 import * as parseModule from "../src/utils/parse"
 
 export async function getTransport() {
     return await TransportNodeHid.create(1000)
 }
 
-export async function getAda() {
+export async function getBcc() {
     const transport = await TransportNodeHid.create(1000)
 
-    const ada = new Ada(transport);
-    (ada as any).t = transport
-    return Promise.resolve(ada)
+    const bcc = new Bcc(transport);
+    (bcc as any).t = transport
+    return Promise.resolve(bcc)
 }
 
 export function turnOffValidation() {

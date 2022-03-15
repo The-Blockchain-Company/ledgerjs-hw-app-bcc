@@ -1,21 +1,21 @@
 import { expect } from "chai"
 
-import type Ada from "../../src/Ada"
-import { getAda } from "../test_utils"
+import type Bcc from "../../src/Bcc"
+import { getBcc } from "../test_utils"
 
 describe("getVersion", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     it("Should correctly get the semantic version of device", async () => {
-        const { version, compatibility } = await ada.getVersion()
+        const { version, compatibility } = await bcc.getVersion()
 
         expect(version.major).to.equal(3)
         expect(version.sentry).to.equal(0)

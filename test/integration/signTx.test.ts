@@ -1,7 +1,7 @@
 import { expect } from "chai"
 
-import type Ada from "../../src/Ada"
-import { describeWithoutValidation,getAda } from "../test_utils"
+import type Bcc from "../../src/Bcc"
+import { describeWithoutValidation,getBcc } from "../test_utils"
 import {
     testsEvie,
     testsCole,
@@ -19,19 +19,19 @@ import {
 
 // Sophie transaction format, but includes legacy Cole addresses in outputs
 describe("signTxOrdinaryCole", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const { testname, tx, signingMode, result: expected } of testsCole) {
         it(testname, async () => {
-            const response = await ada.signTransaction({
+            const response = await bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -44,19 +44,19 @@ describe("signTxOrdinaryCole", async () => {
 // ========================================   SOPHIE   ========================================
 
 describe("signTxOrdinarySophieNoCertificates", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const { testname, tx, signingMode, additionalWitnessPaths, result: expected } of testsSophieNoCertificates) {
         it(testname, async () => {
-            const response = await ada.signTransaction({
+            const response = await bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths,
@@ -67,19 +67,19 @@ describe("signTxOrdinarySophieNoCertificates", async () => {
 })
 
 describe("signTxOrdinarySophieWithCertificates", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const { testname, tx, signingMode, additionalWitnessPaths, result: expected } of testsSophieWithCertificates) {
         it(testname, async () => {
-            const response = await ada.signTransaction({
+            const response = await bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths,
@@ -90,19 +90,19 @@ describe("signTxOrdinarySophieWithCertificates", async () => {
 })
 
 describe("signTxSophieRejectsJS", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const {testname, tx, signingMode, rejectReason } of testsSophieRejects) {
         it(testname, async() => {
-            const response = ada.signTransaction({
+            const response = bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -113,19 +113,19 @@ describe("signTxSophieRejectsJS", async () => {
 })
 
 describeWithoutValidation("signTxSophieRejectsLedger", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const {testname, tx, signingMode, errCls, errMsg } of testsSophieRejects) {
         it(testname, async() => {
-            const response = ada.signTransaction({
+            const response = bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -143,19 +143,19 @@ describeWithoutValidation("signTxSophieRejectsLedger", async () => {
 // added validity_interval_start
 
 describe("signTxOrdinaryEvie", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const { testname, tx, signingMode, result: expected } of testsEvie) {
         it(testname, async () => {
-            const response = await ada.signTransaction({
+            const response = await bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -171,19 +171,19 @@ describe("signTxOrdinaryEvie", async () => {
 // multiassets in outputs
 
 describe("signTxOrdinaryMary", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const { testname, tx, signingMode, result: expected } of testsMary) {
         it(testname, async () => {
-            const response = await ada.signTransaction({
+            const response = await bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -194,7 +194,7 @@ describe("signTxOrdinaryMary", async () => {
 
     for (const { testname, tx, signingMode, result: expected } of testsCatalystRegistration) {
         it(testname, async () => {
-            const response = await ada.signTransaction({
+            const response = await bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -205,7 +205,7 @@ describe("signTxOrdinaryMary", async () => {
 
     for (const {testname, tx, signingMode, rejectReason } of testsInvalidTokenBundleOrdering) {
         it(testname, async() => {
-            const response = ada.signTransaction({
+            const response = bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],
@@ -216,19 +216,19 @@ describe("signTxOrdinaryMary", async () => {
 })
 
 describeWithoutValidation("signTxOrdinaryMaryRejects", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     for (const {testname, tx, signingMode, errCls, errMsg } of testsInvalidTokenBundleOrdering) {
         it(testname, async() => {
-            const response = ada.signTransaction({
+            const response = bcc.signTransaction({
                 tx,
                 signingMode,
                 additionalWitnessPaths: [],

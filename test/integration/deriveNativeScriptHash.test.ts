@@ -1,28 +1,28 @@
 import chai, { expect } from "chai"
 import chaiAsPromised from "chai-as-promised"
 
-import type { Ada } from "../../src/Ada"
-import { DeviceStatusError, InvalidData, NativeScriptHashDisplayFormat } from "../../src/Ada"
-import { describeWithoutValidation, getAda } from "../test_utils"
+import type { Bcc } from "../../src/Bcc"
+import { DeviceStatusError, InvalidData, NativeScriptHashDisplayFormat } from "../../src/Bcc"
+import { describeWithoutValidation, getBcc } from "../test_utils"
 import { InvalidOnLedgerScriptTestcases, InvalidScriptTestcases, ValidNativeScriptTestcases } from "./__fixtures__/deriveNativeScriptHash"
 
 chai.use(chaiAsPromised)
 
 describe("deriveNativeScriptHash", async () => {
-    let ada: Ada = {} as any
+    let bcc: Bcc = {} as any
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     describe("Valid native scripts", async () => {
         for (const { testname, script, displayFormat, hash: expectedHash } of ValidNativeScriptTestcases) {
             it(testname, async () => {
-                const { scriptHashHex } = await ada.deriveNativeScriptHash({
+                const { scriptHashHex } = await bcc.deriveNativeScriptHash({
                     script,
                     displayFormat,
                 })
@@ -35,7 +35,7 @@ describe("deriveNativeScriptHash", async () => {
     describeWithoutValidation("Ledger should not permit invalid scripts", async () => {
         for (const { testname, script } of InvalidOnLedgerScriptTestcases) {
             it(testname, async () => {
-                const promise = ada.deriveNativeScriptHash({
+                const promise = bcc.deriveNativeScriptHash({
                     script,
                     displayFormat: NativeScriptHashDisplayFormat.BECH32,
                 })
@@ -47,7 +47,7 @@ describe("deriveNativeScriptHash", async () => {
     describe("Ledgerjs should not permit invalid scripts", async () => {
         for (const { testname, script, invalidDataReason: expectedInvalidDataReason } of InvalidScriptTestcases) {
             it(testname, async () => {
-                const promise = ada.deriveNativeScriptHash({
+                const promise = bcc.deriveNativeScriptHash({
                     script,
                     displayFormat: NativeScriptHashDisplayFormat.BECH32,
                 })

@@ -1,9 +1,9 @@
 import chai, { expect } from "chai"
 import chaiAsPromised from "chai-as-promised"
 
-import type { Ada } from "../../src/Ada"
-import { utils } from "../../src/Ada"
-import { getAda } from "../test_utils"
+import type { Bcc } from "../../src/Bcc"
+import { utils } from "../../src/Bcc"
+import { getBcc } from "../test_utils"
 import { coleTestcases, InvalidPathTestcases, sophieTestcases } from "./__fixtures__/deriveAddress"
 
 chai.use(chaiAsPromised)
@@ -12,20 +12,20 @@ chai.use(chaiAsPromised)
 const address_hex_to_base58 = (addressHex: string) => utils.base58_encode(utils.hex_to_buf(addressHex as any))
 
 describe("deriveAddress", async () => {
-    let ada: Ada = {} as any
+    let bcc: Bcc = {} as any
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     describe("Should succesfully derive Cole address", async () => {
         for (const { testname, network, addressParams, result: expectedResult } of coleTestcases) {
             it(testname, async () => {
-                const { addressHex } = await ada.deriveAddress({
+                const { addressHex } = await bcc.deriveAddress({
                     network,
                     address: addressParams,
                 })
@@ -38,7 +38,7 @@ describe("deriveAddress", async () => {
     describe("Should succesfully derive Sophie address", async () => {
         for (const { testname, network, addressParams, result: expectedResult } of sophieTestcases) {
             it(testname, async () => {
-                const { addressHex } = await ada.deriveAddress({ network, address: addressParams })
+                const { addressHex } = await bcc.deriveAddress({ network, address: addressParams })
 
                 expect(utils.bech32_encodeAddress(utils.hex_to_buf(addressHex as any))).to.equal(
                     expectedResult
@@ -50,7 +50,7 @@ describe("deriveAddress", async () => {
     describe("Should not permit invalid path for derive address", async () => {
         for (const { testname, network, addressParams, errCls, errMsg } of InvalidPathTestcases) {
             it(testname, async () => {
-                const promise = ada.deriveAddress({
+                const promise = bcc.deriveAddress({
                     network,
                     address: addressParams,
                 })
@@ -62,7 +62,7 @@ describe("deriveAddress", async () => {
     describe("Should succesfully show Cole address", async () => {
         for (const { testname, network, addressParams } of coleTestcases) {
             it(testname, async () => {
-                const result = await ada.showAddress({ network, address: addressParams })
+                const result = await bcc.showAddress({ network, address: addressParams })
                 expect(result).to.equal(undefined)
             })
         }
@@ -71,7 +71,7 @@ describe("deriveAddress", async () => {
     describe("Should succesfully show Sophie address", async () => {
         for (const { testname, network, addressParams } of sophieTestcases) {
             it(testname, async () => {
-                const result = await ada.showAddress({ network, address: addressParams })
+                const result = await bcc.showAddress({ network, address: addressParams })
                 expect(result).to.equal(undefined)
             })
         }
@@ -80,7 +80,7 @@ describe("deriveAddress", async () => {
     describe("Should not permit invalid path for show address", async () => {
         for (const { testname, network, addressParams, errCls, errMsg } of InvalidPathTestcases) {
             it(testname, async () => {
-                const promise = ada.showAddress({
+                const promise = bcc.showAddress({
                     network,
                     address: addressParams,
                 })

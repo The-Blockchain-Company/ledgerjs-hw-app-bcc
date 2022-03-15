@@ -1,6 +1,6 @@
-import type { DeviceOwnedAddress, ErrorBase, Network } from "../../../src/Ada"
-import { DeviceStatusError } from "../../../src/Ada"
-import { AddressType } from "../../../src/Ada"
+import type { DeviceOwnedAddress, ErrorBase, Network } from "../../../src/Bcc"
+import { DeviceStatusError } from "../../../src/Bcc"
+import { AddressType } from "../../../src/Bcc"
 import { str_to_path } from "../../../src/utils/address"
 import { Networks } from "../../test_utils"
 

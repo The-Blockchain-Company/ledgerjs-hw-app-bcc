@@ -1,4 +1,4 @@
-import type { OperationalCertificate, OperationalCertificateSignature } from "../../../src/Ada"
+import type { OperationalCertificate, OperationalCertificateSignature } from "../../../src/Bcc"
 import { str_to_path } from "../../../src/utils"
 
 export type TestCase = {

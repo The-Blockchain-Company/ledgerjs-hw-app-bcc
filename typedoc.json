@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src/Ada.ts"],
+  "entryPoints": ["src/Bcc.ts"],
   "out": "docs_generated",
   "theme": "./_typedoc/custom-theme",
   "categorizeByGroup": false,

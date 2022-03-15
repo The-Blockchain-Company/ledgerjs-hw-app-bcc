@@ -1,10 +1,10 @@
 import chai, { expect } from "chai"
 import chaiAsPromised from "chai-as-promised"
 
-import type Ada from "../../src/Ada"
-import type { Certificate, Transaction } from "../../src/Ada"
-import { CertificateType, InvalidDataReason, TransactionSigningMode } from "../../src/Ada"
-import { getAda, Networks } from "../test_utils"
+import type Bcc from "../../src/Bcc"
+import type { Certificate, Transaction } from "../../src/Bcc"
+import { CertificateType, InvalidDataReason, TransactionSigningMode } from "../../src/Bcc"
+import { getBcc, Networks } from "../test_utils"
 import type { Testcase } from "./__fixtures__/signTxPoolRegistration"
 import {
     certificates,
@@ -21,20 +21,20 @@ import {
 chai.use(chaiAsPromised)
 
 describe("signTxPoolRegistrationOKOwner", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     const test = (testcases: Testcase[], signingMode: TransactionSigningMode) => {
         for (const { testname, tx, result: expectedResult } of testcases) {
             it(testname, async () => {
-                const response = await ada.signTransaction({
+                const response = await bcc.signTransaction({
                     tx,
                     signingMode,
                     additionalWitnessPaths: [],
@@ -48,20 +48,20 @@ describe("signTxPoolRegistrationOKOwner", async () => {
 })
 
 describe("signTxPoolRegistrationOKOperator", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     const test = (testcases: Testcase[], signingMode: TransactionSigningMode) => {
         for (const { testname, tx, result: expectedResult } of testcases) {
             it(testname, async () => {
-                const response = await ada.signTransaction({
+                const response = await bcc.signTransaction({
                     tx,
                     signingMode,
                     additionalWitnessPaths: [],
@@ -77,14 +77,14 @@ describe("signTxPoolRegistrationOKOperator", async () => {
 // ======================================== negative tests (tx should be rejected) ===============================
 
 describe("signTxPoolRegistrationRejectOwner", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     const txBase: Omit<Transaction, 'certificates'> = {
@@ -101,7 +101,7 @@ describe("signTxPoolRegistrationRejectOwner", async () => {
                 ...txBase,
                 certificates: [poolRegistrationCertificate],
             }
-            const promise = ada.signTransaction({
+            const promise = bcc.signTransaction({
                 tx,
                 signingMode: TransactionSigningMode.POOL_REGISTRATION_AS_OWNER,
                 additionalWitnessPaths: [],
@@ -125,7 +125,7 @@ describe("signTxPoolRegistrationRejectOwner", async () => {
                 ...txBase,
                 certificates: [cert],
             }
-            const promise = ada.signTransaction({
+            const promise = bcc.signTransaction({
                 tx,
                 signingMode: TransactionSigningMode.POOL_REGISTRATION_AS_OWNER,
                 additionalWitnessPaths: [],
@@ -149,7 +149,7 @@ describe("signTxPoolRegistrationRejectOwner", async () => {
                     ...txBase,
                     certificates: [cert],
                 }
-                const promise = ada.signTransaction({
+                const promise = bcc.signTransaction({
                     tx,
                     signingMode: TransactionSigningMode.POOL_REGISTRATION_AS_OWNER,
                     additionalWitnessPaths: [],
@@ -165,7 +165,7 @@ describe("signTxPoolRegistrationRejectOwner", async () => {
             ...txBase,
             certificates: [certificates.poolRegistrationWrongMargin],
         }
-        const promise = ada.signTransaction({
+        const promise = bcc.signTransaction({
             tx,
             signingMode: TransactionSigningMode.POOL_REGISTRATION_AS_OWNER,
             additionalWitnessPaths: [],
@@ -182,7 +182,7 @@ describe("signTxPoolRegistrationRejectOwner", async () => {
                 certificates.stakeDelegation,
             ],
         }
-        const promise = ada.signTransaction({
+        const promise = bcc.signTransaction({
             tx,
             signingMode: TransactionSigningMode.POOL_REGISTRATION_AS_OWNER,
             additionalWitnessPaths: [],
@@ -197,7 +197,7 @@ describe("signTxPoolRegistrationRejectOwner", async () => {
             certificates: [certificates.poolRegistrationDefault],
             withdrawals: [withdrawals.withdrawal0],
         }
-        const promise = ada.signTransaction({
+        const promise = bcc.signTransaction({
             tx,
             signingMode: TransactionSigningMode.POOL_REGISTRATION_AS_OWNER,
             additionalWitnessPaths: [],

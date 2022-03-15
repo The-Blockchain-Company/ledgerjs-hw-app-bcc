@@ -1,12 +1,12 @@
 {
-  "name": "@The-Blockchain-Company/ledgerjs-hw-app-bcc",
+  "name": "@theblockchaincompany/ledgerjs-hw-app-bcc",
   "version": "4.0.0",
   "files": [
     "dist"
   ],
-  "types": "./dist/Ada.d.ts",
+  "types": "./dist/Bcc.d.ts",
   "description": "Ledger Hardware Wallet Bcc BCC API",
-  "main": "dist/Ada.js",
+  "main": "dist/Bcc.js",
   "repository": "github:The-Blockchain-Company/ledgerjs-hw-app-bcc",
   "keywords": [
     "Ledger",
@@ -18,7 +18,7 @@
     "Hardware",
     "Wallet"
   ],
-  "author": "VacuumLabs <adalite@vacuumlabs.com>",
+  "author": "The Blockchain Company.io <inquire@blockchain-company.io>",
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^5.12.0",

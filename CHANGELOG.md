@@ -70,7 +70,7 @@ Major release. Switched from flow to TypeScript.
 ### Changed
 
 - All API calls now use single structured argument instead of long list of partial arguments.
-  (For the overview see `src/Ada.ts` changes in https://github.com/vacuumlabs/ledgerjs-bcc-sophie/pull/61)
+  (For the overview see `src/Bcc.ts` changes in https://github.com/vacuumlabs/ledgerjs-bcc-sophie/pull/61)
 - `AddressTypeNibble` enum renamed to `AddressType`
 - `derive/showAddress` now take `network` as an explicit parameter instead of `networkIdOrProtocolMagic` field in `AddressParams`
 - all 64-bit integers that were previously stored in fields ending with `Str` (e.g. `feeStr`) are now without the suffix (i.e. `fee`) and take a "bignumber-like" argument which can be `Number` (if it is small enough, i.e. `<= Number.MAX_SAFE_INTEGER`), string, or native `BigInt`. Non-native bigint implementations are not supported and should be converted to strings)

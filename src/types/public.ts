@@ -760,7 +760,7 @@ export type Flags = {
 /** 
  * Device app version
  * @category Basic types
- * @see [[Ada.getVersion]]
+ * @see [[Bcc.getVersion]]
  * @see [[DeviceCompatibility]]
  */
 export type Version = {
@@ -773,7 +773,7 @@ export type Version = {
 /**
  * Describes compatibility of device with current SDK
  * @category Basic types
- * @see [[Ada.getVersion]]
+ * @see [[Bcc.getVersion]]
  */
 export type DeviceCompatibility = {
     /** Overall compatibility.
@@ -823,7 +823,7 @@ export type DeviceCompatibility = {
 }
 
 /**
- * Response to [[Ada.getSerial]] call
+ * Response to [[Bcc.getSerial]] call
  * @category Basic types
  */
 export type Serial = {
@@ -835,7 +835,7 @@ export type Serial = {
 };
 
 /**
- * Response to [[Ada.deriveAddress]] call
+ * Response to [[Bcc.deriveAddress]] call
  * @category Basic types
  * @see [[DeriveAddressRequest]]
  */
@@ -847,7 +847,7 @@ export type DerivedAddress = {
 /**
  * Derived extended public key
  * @category Basic types
- * @see [[Ada.getExtendedPublicKey]]
+ * @see [[Bcc.getExtendedPublicKey]]
  */
 export type ExtendedPublicKey = {
     publicKeyHex: string,
@@ -857,7 +857,7 @@ export type ExtendedPublicKey = {
 /**
  * Operational certificate signature
  * @category Basic types
- * @see [[Ada.signOperationalCertificate]]
+ * @see [[Bcc.signOperationalCertificate]]
  */
 export type OperationalCertificateSignature = {
     signatureHex: string
@@ -910,7 +910,7 @@ export type TxAuxiliaryDataSupplement = {
 /**
  * Result of signing a transaction.
  * @category Basic types
- * @see [[Ada.signTransaction]]
+ * @see [[Bcc.signTransaction]]
  */
 export type SignedTransactionData = {
     /**
@@ -999,7 +999,7 @@ export type CatalystRegistrationParams = {
  * Note that this represents a *superset* of what Ledger can sign due to certain hardware app/security limitations.
  * @see [[TransactionSigningMode]] for a details on further restrictions
  * @category Basic types
- * @see [[Ada.signTransaction]]
+ * @see [[Bcc.signTransaction]]
  */
 export type Transaction = {
     /**
@@ -1314,7 +1314,7 @@ export type NativeScriptParamsInvalidHereafter = {
 }
 
 /**
- * Response to [[Ada.deriveNativeScriptHash]] call
+ * Response to [[Bcc.deriveNativeScriptHash]] call
  * @category Scripts
  * @see [[DeriveNativeScriptHashRequest]]
  */

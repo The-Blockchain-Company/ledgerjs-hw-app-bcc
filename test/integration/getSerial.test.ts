@@ -1,21 +1,21 @@
 import { expect } from "chai"
 
-import type Ada from "../../src/Ada"
-import { getAda } from "../test_utils"
+import type Bcc from "../../src/Bcc"
+import { getBcc } from "../test_utils"
 
 describe("getSerial", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     it("Should correctly get the serial number of the device", async () => {
-        const response = await ada.getSerial()
+        const response = await bcc.getSerial()
         expect(response.serial.length).to.equal(14)
     })
 })

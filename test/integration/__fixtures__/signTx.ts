@@ -1,6 +1,6 @@
-import type { AssetGroup, DeviceOwnedAddress, ErrorBase,SignedTransactionData, Transaction, TxInput, TxOutput, TxOutputDestination } from "../../../src/Ada"
-import {DeviceStatusError, InvalidDataReason, TxAuxiliaryDataSupplementType} from "../../../src/Ada"
-import { AddressType, CertificateType, Networks, TxAuxiliaryDataType, TxOutputDestinationType, utils } from "../../../src/Ada"
+import type { AssetGroup, DeviceOwnedAddress, ErrorBase,SignedTransactionData, Transaction, TxInput, TxOutput, TxOutputDestination } from "../../../src/Bcc"
+import {DeviceStatusError, InvalidDataReason, TxAuxiliaryDataSupplementType} from "../../../src/Bcc"
+import { AddressType, CertificateType, Networks, TxAuxiliaryDataType, TxOutputDestinationType, utils } from "../../../src/Bcc"
 import type { BIP32Path} from '../../../src/types/public'
 import { StakeCredentialParamsType, TransactionSigningMode } from '../../../src/types/public'
 import { str_to_path } from "../../../src/utils/address"

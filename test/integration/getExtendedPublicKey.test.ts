@@ -1,29 +1,29 @@
 import chai, { expect } from "chai"
 import chaiAsPromised from 'chai-as-promised'
 
-import type Ada from "../../src/Ada"
-import { DeviceStatusError } from "../../src/Ada"
+import type Bcc from "../../src/Bcc"
+import { DeviceStatusError } from "../../src/Bcc"
 import { str_to_path } from "../../src/utils/address"
-import { getAda } from "../test_utils"
+import { getBcc } from "../test_utils"
 import type { TestCase } from "./__fixtures__/getExtendedPublicKey"
 import { testsCole, testsColdKeys, testsSophie, testsSophieUnusual } from "./__fixtures__/getExtendedPublicKey"
 chai.use(chaiAsPromised)
 
 describe("getExtendedPublicKey", async () => {
-    let ada: Ada = {} as Ada
+    let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
-        ada = await getAda()
+        bcc = await getBcc()
     })
 
     afterEach(async () => {
-        await (ada as any).t.close()
+        await (bcc as any).t.close()
     })
 
     describe("Should successfully get a single extended public key", async () => {
         const test = async (tests: TestCase[]) => {
             for (const { path, expected } of tests) {
-                const response = await ada.getExtendedPublicKey(
+                const response = await bcc.getExtendedPublicKey(
                     { path: str_to_path(path) }
                 )
 
@@ -48,7 +48,7 @@ describe("getExtendedPublicKey", async () => {
 
     describe("Should successfully get several extended public keys", async () => {
         const test = async (tests: TestCase[]) => {
-            const results = await ada.getExtendedPublicKeys(
+            const results = await bcc.getExtendedPublicKeys(
                 { paths: tests.map(({ path }) => str_to_path(path)) }
             )
 
@@ -70,12 +70,12 @@ describe("getExtendedPublicKey", async () => {
 
     describe("Should reject invalid paths", () => {
         it('path shorter than 3 indexes', async () => {
-            const promise = ada.getExtendedPublicKey({ path: str_to_path("44'/1815'") })
+            const promise = bcc.getExtendedPublicKey({ path: str_to_path("44'/1815'") })
             await expect(promise).to.be.rejectedWith(DeviceStatusError, "Action rejected by Ledger's security policy")
         })
 
         it('path not matching cold key structure', async () => {
-            const promise = ada.getExtendedPublicKey({ path: str_to_path("1853'/1900'/0'/0/0") })
+            const promise = bcc.getExtendedPublicKey({ path: str_to_path("1853'/1900'/0'/0/0") })
             await expect(promise).to.be.rejectedWith(DeviceStatusError, "Action rejected by Ledger's security policy")
         })
     })

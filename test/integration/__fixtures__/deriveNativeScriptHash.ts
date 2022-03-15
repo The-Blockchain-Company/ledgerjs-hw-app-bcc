@@ -1,5 +1,5 @@
-import type { NativeScript} from "../../../src/Ada"
-import { InvalidDataReason, NativeScriptHashDisplayFormat, NativeScriptType } from "../../../src/Ada"
+import type { NativeScript} from "../../../src/Bcc"
+import { InvalidDataReason, NativeScriptHashDisplayFormat, NativeScriptType } from "../../../src/Bcc"
 import { str_to_path } from "../../../src/utils/address"
 
 type ValidNativeScriptTestcase = {
