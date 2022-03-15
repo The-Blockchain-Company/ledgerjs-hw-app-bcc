@@ -1,0 +1,1 @@
+# ledgerjs-hw-app-bcc
