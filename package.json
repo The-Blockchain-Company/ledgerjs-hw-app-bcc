@@ -1,5 +1,5 @@
 {
-  "name": "@theblockchaincompany/ledgerjs-hw-app-bcc",
+  "name": "@the-blockchain-company/ledgerjs-hw-app-bcc",
   "version": "4.0.0",
   "files": [
     "dist"
