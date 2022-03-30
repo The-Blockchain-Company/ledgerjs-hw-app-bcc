@@ -1535,7 +1535,7 @@ const jenBase = {
     validityIntervalStart: 47,
 }
 
-export type TestcaseMary = {
+export type TestcaseJen = {
   testname: string
   tx: Transaction
   signingMode: TransactionSigningMode
@@ -1544,7 +1544,7 @@ export type TestcaseMary = {
   result: SignedTransactionData
 }
 
-export const testsMary: TestcaseMary[] = [
+export const testsJen: TestcaseJen[] = [
     {
         testname: "Sign tx with a multiasset output",
         tx: {
@@ -1713,7 +1713,7 @@ export const testsMary: TestcaseMary[] = [
     },
 ]
 
-export const testsCatalystRegistration: TestcaseMary[] = [
+export const testsCatalystRegistration: TestcaseJen[] = [
     {
         testname: "Sign tx with Catalyst voting key registration metadata with base address",
         tx: {

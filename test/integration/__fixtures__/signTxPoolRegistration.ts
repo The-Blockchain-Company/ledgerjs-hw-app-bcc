@@ -649,7 +649,7 @@ export const poolRegistrationOwnerTestcases: Testcase[] = [
         },
     },
     {
-    // works as a private pool not visible in yoroi, klarity, etc.
+    // works as a private pool not visible in quantaverse, klarity, etc.
         testname: "Witness pool registration with no metadata",
         tx: {
             ...txBase,

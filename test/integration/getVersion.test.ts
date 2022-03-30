@@ -22,7 +22,7 @@ describe("getVersion", async () => {
         expect(compatibility).to.deep.equal({
             isCompatible: true,
             recommendedVersion: null,
-            supportsMary: true,
+            supportsJen: true,
             supportsMint: true,
             supportsMultisigTransaction: true,
             supportsCatalystRegistration: true,

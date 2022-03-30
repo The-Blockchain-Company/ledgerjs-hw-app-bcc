@@ -7,7 +7,7 @@ import {
     testsCole,
     testsCatalystRegistration,
     testsInvalidTokenBundleOrdering,
-    testsMary,
+    testsJen,
     testsSophieNoCertificates,
     testsSophieRejects,
     testsSophieWithCertificates,
@@ -170,7 +170,7 @@ describe("signTxOrdinaryEvie", async () => {
 // changes:
 // multiassets in outputs
 
-describe("signTxOrdinaryMary", async () => {
+describe("signTxOrdinaryJen", async () => {
     let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {
@@ -181,7 +181,7 @@ describe("signTxOrdinaryMary", async () => {
         await (bcc as any).t.close()
     })
 
-    for (const { testname, tx, signingMode, result: expected } of testsMary) {
+    for (const { testname, tx, signingMode, result: expected } of testsJen) {
         it(testname, async () => {
             const response = await bcc.signTransaction({
                 tx,
@@ -215,7 +215,7 @@ describe("signTxOrdinaryMary", async () => {
     }
 })
 
-describeWithoutValidation("signTxOrdinaryMaryRejects", async () => {
+describeWithoutValidation("signTxOrdinaryJenRejects", async () => {
     let bcc: Bcc = {} as Bcc
 
     beforeEach(async () => {

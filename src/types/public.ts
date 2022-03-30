@@ -790,7 +790,7 @@ export type DeviceCompatibility = {
     /**
      * Whether we support Jen features
      */
-    supportsMary: boolean
+    supportsJen: boolean
     /**
      * Whether we support Catalyst registration
      */
