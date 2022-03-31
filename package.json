@@ -1,6 +1,6 @@
 {
-  "name": "@the-blockchain-company/ledgerjs-hw-app-bcc",
-  "version": "4.0.0",
+  "name": "@theblockchaincompanyio/ledgerjs-hw-app-bcc",
+  "version": "4.0.1",
   "files": [
     "dist"
   ],
@@ -18,7 +18,7 @@
     "Hardware",
     "Wallet"
   ],
-  "author": "The Blockchain Company.io <inquire@blockchain-company.io>",
+  "author": "The Blockchain Company.io <devops@blockchain-company.io>",
   "license": "Apache-2.0",
   "dependencies": {
     "@ledgerhq/hw-transport": "^5.12.0",
